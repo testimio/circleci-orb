@@ -1,4 +1,4 @@
-# Testim.io Orb [![CircleCI Orb Version](https://img.shields.io/badge/endpoint.svg?url=https://badges.circleci.io/orb/testimio/runner)](https://circleci.com/orbs/registry/orb/testimio/runner) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/testimio/circleci-orb/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/orbs)
+# Testim.io Orb [![CircleCI Orb Version](https://img.shields.io/badge/endpoint.svg?url=https://badges.circleci.io/orb/testimio/runner)](https://circleci.com/orbs/registry/orb/testimio/runner) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/testimio/circleci-orb/blob/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/orbs)
 
 This orb allows you to run Testim CLI from your CircleCI jobs
 
