@@ -18,7 +18,7 @@ parameters:
     type: string
     default: "report.xml"
 
-  executor: default
+  executor: docker
 
   steps:
     - run_tests:
