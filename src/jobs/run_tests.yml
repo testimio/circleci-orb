@@ -18,13 +18,13 @@ parameters:
     type: string
     default: "report.xml"
 
-  executor: docker
+executor: default
 
-  steps:
-    - run_tests:
-        token: << parameters.token >>
-        project_id: << parameters.project_id >>
-        grid_name: << parameters.grid_name >>
-        report_store_path: << parameters.report_store_path >>
-        report_file: << parameters.report_file >>
-        options: << parameters.options >>
+steps:
+  - run_tests:
+      token: << parameters.token >>
+      project_id: << parameters.project_id >>
+      grid_name: << parameters.grid_name >>
+      report_store_path: << parameters.report_store_path >>
+      report_file: << parameters.report_file >>
+      options: << parameters.options >>
