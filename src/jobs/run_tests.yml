@@ -1,3 +1,4 @@
+description: Run tests on Testim.io
 parameters:
   token:
     type: env_var_name
