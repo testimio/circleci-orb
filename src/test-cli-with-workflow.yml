@@ -1,0 +1,12 @@
+version: 2.1
+
+orbs:
+  testimio: testimio/runner@1.1.1
+
+workflows:
+  run_tests:
+    jobs:
+      - testimio/run_tests:
+          project_id: "<PROJECT_ID>"
+          grid_name: "Testim-grid"
+          options: --label "<LABEL>" --parallel "1"

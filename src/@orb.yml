@@ -1,0 +1,102 @@
+version: 2.1
+description: Easily run your tests and suits from Testim.io
+
+examples:
+  run_tests:
+    description: Run tests on Testim.io
+    usage:
+      version: 2.1
+
+      orbs:
+        testimio: testimio/runner@1.1.0
+
+      workflows:
+        build-and-test:
+          jobs:
+            - testimio/run_tests:
+                token: "token (default: $TESTIMIO_TOKEN)"
+                project_id: "project id (required)"
+                grid_name: "grid name (optional, default: Public)"
+                options: "--<option_name> <parameter> (optional)"
+
+executors:
+  default:
+    docker:
+      - image: testim/docker-cli
+
+commands:
+  run_tests:
+    description: run tests
+    parameters:
+      token:
+        type: env_var_name
+        default: TESTIMIO_TOKEN
+      project_id:
+        type: string
+      grid_name:
+        type: string
+        default: "Public"
+      options:
+        type: string
+        default: ""
+      report_store_path:
+        type: string
+        default: "/tmp/circleci-test-results"
+      report_file:
+        type: string
+        default: "reports.xml"
+    
+    steps:
+      - run:
+          name: run tests
+          command: |
+            mkdir -p << parameters.report_store_path >>
+            OPTIONS='<< parameters.options >>'
+            if [[ -z ${OPTIONS} ]]; then
+              testim --project "<< parameters.project_id >>" \
+                --grid "<< parameters.grid_name >>" \
+                --token "${<< parameters.token >>}" \
+                --report-file << parameters.report_store_path >>/<< parameters.report_file >>
+            else
+              testim --project "<< parameters.project_id >>" \
+                --grid "<< parameters.grid_name >>" \
+                --token "${<< parameters.token >>}" \
+                --report-file << parameters.report_store_path >>/<< parameters.report_file >> \
+                << parameters.options >>
+            fi
+      - store_artifacts:
+          path: << parameters.report_store_path >>
+      - store_test_results:
+          path: << parameters.report_store_path >>
+
+jobs:
+  run_tests:
+    parameters:
+      token:
+        type: env_var_name
+        default: TESTIMIO_TOKEN
+      project_id:
+        type: string
+      grid_name:
+        type: string
+        default: "Public"
+      options:
+        type: string
+        default: ""
+      report_store_path:
+        type: string
+        default: "/tmp/circleci-test-results"
+      report_file:
+        type: string
+        default: "report.xml"
+
+    executor: default
+   
+    steps:
+      - run_tests:
+          token: << parameters.token >>
+          project_id: << parameters.project_id >>
+          grid_name: << parameters.grid_name >>
+          report_store_path: << parameters.report_store_path >>
+          report_file: << parameters.report_file >>
+          options: << parameters.options >>
