@@ -1,0 +1,3 @@
+description: The default executor for jobs in this orb.
+docker:
+  - image: testim/docker-cli

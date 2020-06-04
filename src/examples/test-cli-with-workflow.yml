@@ -1,12 +1,15 @@
-version: 2.1
+description: Run tests on Testim.io
+usage:
+  version: 2.1
 
-orbs:
-  testimio: testimio/runner@1.1.1
+  orbs:
+    testimio: testimio/runner@1.1.1
 
-workflows:
-  run_tests:
-    jobs:
-      - testimio/run_tests:
-          project_id: "<PROJECT_ID>"
-          grid_name: "Testim-grid"
-          options: --label "<LABEL>" --parallel "1"
+  workflows:
+    build-and-test:
+      jobs:
+        - testimio/run_tests:
+            token: "token (default: $TESTIMIO_TOKEN)"
+            project_id: "project id (required)"
+            grid_name: "grid name (optional, default: Public)"
+            options: "--<option_name> <parameter> (optional)"
