@@ -17,13 +17,14 @@ workflows:
               # Simplified SemVer regex
               only: /^\d+\.\d+\.\d+$/
       - publish:
+          requires:
+            - test
           filters:
             branches:
               ignore: /.*/
             tags:
               # Simplified SemVer regex
               only: /^\d+\.\d+\.\d+$/
-          context: main
 
 jobs:
   test:
