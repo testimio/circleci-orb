@@ -3,13 +3,13 @@ usage:
   version: 2.1
 
   orbs:
-    testimio: testimio/runner@1.1.1
+    testimio: testimio/runner@x.y
 
   workflows:
     build-and-test:
       jobs:
         - testimio/run_tests:
-            token: "token (default: $TESTIMIO_TOKEN)"
+            token: "token environment variable name. default: TESTIMIO_TOKEN"
             project_id: "project id (required)"
             grid_name: "grid name (optional, default: Public)"
             options: "--<option_name> <parameter> (optional)"
